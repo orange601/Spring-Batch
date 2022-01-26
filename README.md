@@ -1,0 +1,2 @@
+# BATCH_PROJECT
+STRING_BATCH-배치프로그램
