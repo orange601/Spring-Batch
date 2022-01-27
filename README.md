@@ -17,6 +17,11 @@ STRING_BATCH-배치프로그램
   - 설정하지 않으면 java.lang.IllegalStateException: Failed to execute ApplicationRunner 1차적으로 배치 실행이 에러가 발생
   - 2차적으로 "테이블 또는 뷰가 존재하지 않습니다" 에러 발생
 
+## 테이블 수동 생성방법
+![이미지 1](https://user-images.githubusercontent.com/24876345/151293695-5aeed262-cd5f-425b-9304-c2a1d737846e.png)
+
+  - BATCH JAR파일을 확인해보면 DB별로 시키마 생성쿼리가 저장 되어 있다. 복사해서 스크립트로 바로 사용하면 된다.
+
 ## Run Cofiguration ##
   - Arguments 설정 ( 어떤 job을 실행시킬건지 )
   - --job.name=helloJob
