@@ -7,7 +7,7 @@ STRING_BATCH-배치프로그램
 ## PROPERTIES 설정 ##
   - Batch를 실행시키기 위해 기본적으로 필요한 테이블이 있는데 아래 설정을 해두면 자동으로 spring batch core에서 테이블을 생성한다.
   - spring.batch.jdbc.initialize-schema=always
-  - 설정하지 않으면 테이블 또는 뷰가 없다는 에러 발생
+  - 설정하지 않으면  "테이블 또는 뷰가 존재하지 않습니다" 에러 발생
 
 ## Run Cofiguration ##
   - Arguments 설정 ( 어떤 job을 실행시킬건지 )
