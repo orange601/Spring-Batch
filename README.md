@@ -27,8 +27,6 @@ STRING_BATCH-배치프로그램
 - Job은 N개의 Step을 실행할 수 있으며, 흐름(Flow)을 관리할 수 있다.
     - 예를 들면, A Step 실행 후 조건에 따라 B Step 또는 C Step을 실행 설정
 
-----------------------------------------------------------
-
 ### 2.3 STEP ###
 - Step은 Job의 세부 실행 단위이며, N개가 등록돼 실행된다.
 - Step의 실행 단위는 크게 2가지로 나눌 수 있다.
@@ -54,6 +52,8 @@ STRING_BATCH-배치프로그램
 ## 3. 배치 실행을 위한 메타 데이터가 저장되는 테이블 ##
 ![이미지 3](https://user-images.githubusercontent.com/24876345/151476669-1253fe05-d522-41fa-a704-0583f18df05c.png)
 
+----------------------------------------------------------
+
 - BATCH_JOB_INSTANCE
     - Job이 실행되며 생성되는 최상위 계층의 테이블
     - job_name과 job_key를 기준으로 하나의 row가 생성되며, 같은 job_name과 job_key가 저장될 수 없다.
@@ -73,8 +73,6 @@ STRING_BATCH-배치프로그램
 ![이미지 1](https://user-images.githubusercontent.com/24876345/151293695-5aeed262-cd5f-425b-9304-c2a1d737846e.png)
 - BATCH JAR파일을 확인해보면 DB별로 시키마 생성쿼리가 저장 되어 있다. 복사해서 스크립트로 바로 사용하면 된다.(이미지참조)
 - spring-batch-core/org.springframework/batch/core/* 에 위치
-
-
 
 ## 4. PROPERTIES 설정 ##
   - Batch를 실행시키기 위해 기본적으로 필요한 테이블이 있는데 아래 설정을 해두면 자동으로 spring batch core에서 테이블을 생성한다.
