@@ -34,14 +34,14 @@ STRING_BATCH-배치프로그램
   2. Task 기반 : 하나의 작업 기반으로 실행
 - Chunk 기반 Step은 ItemReader, ItemProcessor, ItemWriter가 있다.
     - 여기서 Item은 배치 처리 대상 객체를 의미한다.
-- ItemReader는 배치 처리 대상 객체를 읽어 ItemProcessor 또는 ItemWriter에게 전달한다.
-    - 예를 들면, 파일 또는 DB에서 데이터를 읽는다.
-- ItemProcessor는 input 객체를 output 객체로 filtering 또는 processing 해 ItemWriter에게 전달한다.
-    - 예를 들면, ItemReader에서 읽은 데이터를 수정 또는 ItemWriter 대상인지 filtering 한다.
+- **ItemReader**는 배치 처리 대상 객체를 읽어 ItemProcessor 또는 ItemWriter에게 전달한다.
+    - 예를 들면, 파일 또는 **DB에서 데이터를 읽는다.**
+- **ItemProcessor**는 input 객체를 output 객체로 filtering 또는 processing 해 ItemWriter에게 전달한다.
+    - 예를 들면, ItemReader에서 **읽은 데이터를 수정** 또는 ItemWriter 대상인지 filtering 한다.
     - ItemProcessor는 optional 하다.
     - ItemProcessor가 하는 일을 ItemReader 또는 ItemWriter가 대신할 수 있다.
-- ItemWriter는 배치 처리 대상 객체를 처리한다.
-    - 예를 들면, DB update를 하거나, 처리 대상 사용자에게 알림을 보낸다.
+- **ItemWrite**r는 배치 처리 대상 객체를 처리한다.
+    - 예를 들면, **DB update를 하거나, 처리 대상 사용자에게 알림**을 보낸다.
 
 ### 2.4 Chunk와 Step의 차이점 ###
   - chunk-size를 정하면 사이즈 개수만큼 작업단위 혹은 데이터를 나누어서 실행 (대용량 데이터에 적합)
