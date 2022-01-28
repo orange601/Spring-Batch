@@ -45,17 +45,36 @@ STRING_BATCH-배치프로그램
 - ItemWriter는 배치 처리 대상 객체를 처리한다.
     - 예를 들면, DB update를 하거나, 처리 대상 사용자에게 알림을 보낸다.
 
+### 2.4 Chunk와 Step의 차이점 ###
+  - chunk-size를 정하면 사이즈 개수만큼 작업단위 혹은 데이터를 나누어서 실행 (대용량 데이터에 적합)
+  - Step으로도 작업 단위 혹은 데이터를 나누어서 실행 가능하지만 코드가 길어지고 복잡해진다.
 
 ----------------------------------------------------------
 
-## 2. Gradle dependency ##
-- spring-boot-starter-batch
-- spring-boot-starter-web
+## 3. 배치 실행을 위한 메타 데이터가 저장되는 테이블 ##
+![이미지 3](https://user-images.githubusercontent.com/24876345/151476669-1253fe05-d522-41fa-a704-0583f18df05c.png)
 
-## 3. Chunk란? ##
-  - chunk-size를 정하면 사이즈 개수만큼 작업단위 혹은 데이터를 나누어서 실행 (대용량 데이터에 적합)
-  - Step은 작업단위 혹은 데이터를 나누어서 사용불가
-  - Step으로도 작업 단위 혹은 데이터를 나누어서 실행 가능하지만 코드가 길어지고 복잡해진다.
+- BATCH_JOB_INSTANCE
+    - Job이 실행되며 생성되는 최상위 계층의 테이블
+    - job_name과 job_key를 기준으로 하나의 row가 생성되며, 같은 job_name과 job_key가 저장될 수 없다.
+    - job_key는 BATCH_JOB_EXECUTION_PARAMS에 저장되는 Parameter를 나열해 암호화해 저장한다.
+- BATCH_JOB_EXECUTION
+    - Job이 실행되는 동안 시작/종료 시간, job 상태 등을 관리
+- BATCH_JOB_EXECUTION_PARAMS
+    - Job을 실행하기 위해 주입된 parameter 정보 저장
+- BATCH_JOB_EXECUTION_CONTEXT
+    - Job이 실행되며 공유해야할 데이터를  직렬화해 저장
+- BATCH_STEP_EXECUTION
+    - Step이 실행되는 동안 필요한 데이터 또는 실행된 결과 저장
+- BATCH_STEP_EXECUTION_CONTEXT
+    - Step이 실행되며 공유해야할 데이터를 직렬화해 저장
+
+### 3.1 테이블 수동 생성방법 ###
+![이미지 1](https://user-images.githubusercontent.com/24876345/151293695-5aeed262-cd5f-425b-9304-c2a1d737846e.png)
+- BATCH JAR파일을 확인해보면 DB별로 시키마 생성쿼리가 저장 되어 있다. 복사해서 스크립트로 바로 사용하면 된다.(이미지참조)
+- spring-batch-core/org.springframework/batch/core/* 에 위치
+
+
 
 ## 4. PROPERTIES 설정 ##
   - Batch를 실행시키기 위해 기본적으로 필요한 테이블이 있는데 아래 설정을 해두면 자동으로 spring batch core에서 테이블을 생성한다.
@@ -66,13 +85,7 @@ STRING_BATCH-배치프로그램
   - 설정하지 않으면 java.lang.IllegalStateException: Failed to execute ApplicationRunner 1차적으로 배치 실행이 에러가 발생
   - 2차적으로 "테이블 또는 뷰가 존재하지 않습니다" 에러 발생
 
-## 5. 테이블 수동 생성방법
-![이미지 1](https://user-images.githubusercontent.com/24876345/151293695-5aeed262-cd5f-425b-9304-c2a1d737846e.png)
 
-  - BATCH JAR파일을 확인해보면 DB별로 시키마 생성쿼리가 저장 되어 있다. 복사해서 스크립트로 바로 사용하면 된다.(이미지참조)
 
-## 6. Run Cofiguration ##
-  - Arguments 설정 ( 어떤 job을 실행시킬건지 )
-  - --job.name=helloJob
 
 
