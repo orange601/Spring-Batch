@@ -10,7 +10,7 @@ STRING_BATCH-배치프로그램
   - 배치처리를 위해 Spring Framework 기반 기술 활용
   - 스프링배치의 실행 단위 **JOB**과 **Step**
   - JOB은 배치의 실행단위
-  - Step은 JOB의 실행단위 - tasklet 객체로 배치를 실행함
+  - Step은 JOB의 실행단위 - tasklet 객체 실행함
   - **간단한 작업: Tasklet 단위처리**
   - **대량 묶음처리: Chunk 단위처리**
 
