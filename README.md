@@ -14,6 +14,13 @@ STRING_BATCH-배치프로그램
   - **간단한 작업: Tasklet 단위처리**
   - **대량 묶음처리: Chunk 단위처리**
 
+----------------------------------------------------------
+
+### Spring Batch 기본 구조 ###
+![이미지 2](https://user-images.githubusercontent.com/24876345/151474710-34fa570d-a366-4e35-9324-800a790a9c89.png)
+
+----------------------------------------------------------
+
 ## 2. Gradle dependency ##
 - spring-boot-starter-batch
 - spring-boot-starter-web
