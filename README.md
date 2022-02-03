@@ -40,6 +40,7 @@ STRING_BATCH-배치프로그램
     - 예를 들면, ItemReader에서 **읽은 데이터를 수정** 또는 ItemWriter 대상인지 filtering 한다.
     - ItemProcessor는 optional 하다.
     - ItemProcessor가 하는 일을 ItemReader 또는 ItemWriter가 대신할 수 있다.
+    - ![이미지1](https://user-images.githubusercontent.com/24876345/152299072-1b9879c5-6531-48bd-bd5f-e08339657748.png)
 - **ItemWrite**r는 배치 처리 대상 객체를 처리한다.
     - 예를 들면, **DB update를 하거나, 처리 대상 사용자에게 알림**을 보낸다.
 
