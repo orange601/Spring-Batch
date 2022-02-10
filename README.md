@@ -1,5 +1,6 @@
 # BATCH_PROJECT
 STRING_BATCH-배치프로그램
+https://github.com/woniper/fastcampus-spring-batch-example 참조했음
 
 ## 1. 배치란? ##
   - 큰 단위의 작업을 일괄처리
