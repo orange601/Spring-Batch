@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="StatisticsMapper">
+	<select id="findAllProgress" resultType="orange.spring.batch.entity.Progress">
+		SELECT
+			 ma.*
+		FROM (
+			SELECT 
+				A.* 
+				, ROWNUM RN 
+			FROM 
+				DTD_PROGRESS A
+			WHERE
+				ROWNUM <![CDATA[<=]]> (#{_page} + 1) * #{_pagesize}
+		) ma
+		WHERE
+			RN <![CDATA[>]]> (#{_page}*#{_pagesize})
+	</select>
+	
+	<select id="findStatistics" resultType="orange.spring.batch.dto.Statistics">
+		WITH arActualTb AS(
+			SELECT
+				zone_val
+				, wbs_seq_no
+				, sum(quant_val) AS total_quant_val
+			FROM
+				dtd_ar_actual
+			GROUP BY
+				wbs_seq_no, zone_val
+		), excelActualTb AS (
+            SELECT
+               zone_val
+               , wbs_seq_no
+               , sum(actual_quant_val) AS actual_quant_val
+            FROM
+                dtd_actvt_actual
+            GROUP BY
+                wbs_seq_no, zone_val
+        )
+		SELECT
+			 ma.*
+		FROM (
+			SELECT 
+				A.* 
+				, ROWNUM RN 
+			FROM (
+				SELECT
+				    wbs.wbs_seq_no
+					, plan.actvt_seq_no
+					, wbs.wbs_lvl6
+					, wbs.wbs_lvl7
+					, wbs.wbs_lvl7_cd
+					, wbs.quant_unit
+					, plan.zone_val
+					, plan.pln_lch_ymd
+					, plan.pln_cmplt_ymd
+					, plan.pln_quant_val
+				    , nvl(arac.total_quant_val, 0) AS total_quant_val
+				    , nvl(exac.actual_quant_val, 0) AS actual_quant_val
+				    , el.quant_val
+				    , el.cam_pos
+				    , el.revit_element
+				FROM (
+                    SELECT
+                        *
+                    FROM
+                        dtd_ar_actual_el
+                    WHERE
+                        quant_val >= 0
+                ) el
+				LEFT JOIN
+					dtd_ar_actual ar
+				ON
+				    ar.ar_actual_seq_no = el.ar_actual_seq_no
+				AND
+					ar.actvt_seq_no = el.actvt_seq_no
+				AND
+					ar.wbs_seq_no = el.wbs_seq_no
+				JOIN
+				    dtd_actvt_pln plan
+				ON
+				    ar.zone_val = plan.zone_val
+				AND
+					ar.wbs_seq_no = plan.wbs_seq_no
+				LEFT JOIN (
+                    SELECT
+                        *
+                    FROM
+                        dtd_wbs
+                    WHERE
+                        use_yn = 'Y'
+                ) wbs
+				ON
+				    wbs.wbs_seq_no = el.wbs_seq_no
+				LEFT JOIN
+					arActualTb arac
+				ON
+				    arac.zone_val = plan.zone_val
+				AND
+					arac.wbs_seq_no = plan.wbs_seq_no
+				LEFT JOIN
+					excelActualTb exac
+				ON
+				    exac.zone_val = plan.zone_val
+				AND
+					exac.wbs_seq_no = plan.wbs_seq_no
+			) A
+			WHERE
+				ROWNUM <![CDATA[<=]]> (#{_page} + 1) * #{_pagesize}
+		) ma
+		WHERE
+			RN <![CDATA[>]]> (#{_page}*#{_pagesize})	
+	</select>
+</mapper>
