@@ -9,7 +9,7 @@
 				A.* 
 				, ROWNUM RN 
 			FROM 
-				DTD_PROGRESS A
+				PROGRESS A
 			WHERE
 				ROWNUM <![CDATA[<=]]> (#{_page} + 1) * #{_pagesize}
 		) ma
