@@ -1,7 +1,7 @@
 # BATCH_PROJECT
 STRING_BATCH-배치프로그램
 
-패스트캠퍼스의 이경원님 소스를 참
+패스트캠퍼스의 이경원님 소스를 참조
 https://github.com/woniper/fastcampus-spring-batch-example
 
 
