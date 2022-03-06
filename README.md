@@ -4,7 +4,6 @@ STRING_BATCH-배치프로그램
 패스트캠퍼스의 이경원님 소스를 참고
 https://github.com/woniper/fastcampus-spring-batch-example
 
-(여기 있는 소스와 참조해서 보면 혼동 주의)
 
 ## 1. 배치란? ##
   - 큰 단위의 작업을 일괄처리
