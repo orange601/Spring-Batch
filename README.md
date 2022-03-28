@@ -76,7 +76,9 @@ https://github.com/woniper/fastcampus-spring-batch-example
     - Step이 실행되며 공유해야할 데이터를 직렬화해 저장
 
 ### 3.1 테이블 수동 생성방법 ###
+<!--
 ![이미지 1](https://user-images.githubusercontent.com/24876345/151293695-5aeed262-cd5f-425b-9304-c2a1d737846e.png)
+-->
 - BATCH JAR파일을 확인해보면 DB별로 시키마 생성쿼리가 저장 되어 있다. 복사해서 스크립트로 바로 사용하면 된다.(이미지참조)
 - spring-batch-core/org.springframework/batch/core/* 에 위치
 
