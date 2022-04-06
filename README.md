@@ -1,15 +1,11 @@
 # BATCH_PROJECT
 STRING_BATCH-배치프로그램
 
-패스트캠퍼스의 이경원님 소스를 참조
-https://github.com/woniper/fastcampus-spring-batch-example
-
-
 ## 1. 배치란? ##
   - 큰 단위의 작업을 일괄처리
   - 대부분 대용량 처리가 많음 (비실시간처리에 사용)
   - 컴퓨터 자원 사용이 낮은 시간대에 배치를 처리하는 것을 활용
-  - **스케줄러와 혼동 금지 스케줄러는 JOB을 실행시키는 프로그램을 의미**
+  - **스케줄러는 JOB을 실행시키는 프로그램을 의미**
 
 ## 2. Spring Batch ##
   - 배치처리를 위해 Spring Framework 기반 기술 활용
@@ -92,7 +88,8 @@ https://github.com/woniper/fastcampus-spring-batch-example
   - 2차적으로 "테이블 또는 뷰가 존재하지 않습니다" 에러 발생
 
 
-
+패스트캠퍼스의 이경원님 소스를 참조
+https://github.com/woniper/fastcampus-spring-batch-example
 
 
 
